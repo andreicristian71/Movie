@@ -10,10 +10,11 @@ namespace Movie.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter customer's name.")]
         [StringLength(255)]
         public string Name { get; set; }
 
+        [Required]
         public bool IsSubscribedToNewsteller { get; set; }
 
         public MembershipType MembershipType { get; set; }
@@ -23,7 +24,18 @@ namespace Movie.Models
         public byte MembershipTypeId { get; set; }
 
         [Display(Name = "Date of birth")]
-
+        [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
+
+        public static class Values
+        {
+            public static readonly int Unknown = 0;
+            public static readonly int PayAsYouGo = 1;
+            public static readonly int Monthly = 2;
+            public static readonly int Quarterly = 3;
+            public static readonly int Yearly = 4;
+        }
+        
+
     }
 }

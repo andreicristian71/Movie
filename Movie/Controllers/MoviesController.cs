@@ -30,7 +30,7 @@ namespace Movie.Controllers
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
-            var viewModel = new ViewModels.MovieFormViewModel
+            var viewModel = new ViewModels.MovieFormViewModel()
             {
                 Genres = genres
             };
@@ -38,10 +38,22 @@ namespace Movie.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Models.Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new ViewModels.MovieFormViewModel(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
             if (movie.Id == 0)
+            {
                 _context.Movies.Add(movie);
+
+            }
             else
             {
                 var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
@@ -51,6 +63,8 @@ namespace Movie.Controllers
                 movieInDb.Name = movie.Name;
                 movieInDb.NumberInStock = movie.NumberInStock;
                 movieInDb.GenreId = movie.GenreId;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                
             }
             _context.SaveChanges();
             return RedirectToAction("Index", "Movies");
@@ -62,9 +76,8 @@ namespace Movie.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new ViewModels.MovieFormViewModel
+            var viewModel = new ViewModels.MovieFormViewModel(movie)
             {
-                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
             return View("MovieForm", viewModel);

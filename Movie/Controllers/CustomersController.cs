@@ -39,7 +39,7 @@ namespace Movie.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new ViewModels.CustomerFormViewModel
+            var viewModel = new ViewModels.CustomerFormViewModel()
             {
                 MembershipTypes = membershipTypes
             };
@@ -47,8 +47,17 @@ namespace Movie.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Models.Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new ViewModels.CustomerFormViewModel(customer)
+                {
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
             if(customer.Id == 0)
                 _context.Customers.Add(customer);
             else
@@ -58,6 +67,7 @@ namespace Movie.Controllers
                 //Mapper.Map(customer,customerInDb);
 
                 customerInDb.Name = customer.Name;
+                customerInDb.BirthDate = customerInDb.BirthDate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsteller = customer.IsSubscribedToNewsteller;
 
@@ -72,9 +82,8 @@ namespace Movie.Controllers
             if (customer == null)
                 return HttpNotFound();
 
-            var viewModel = new ViewModels.CustomerFormViewModel
+            var viewModel = new ViewModels.CustomerFormViewModel(customer)
             {
-                Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
             return View("CustomerForm", viewModel);

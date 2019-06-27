@@ -10,7 +10,7 @@ namespace Movie.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter movie's name.")]
         [StringLength(255)]
         public string Name { get; set; }
 
@@ -21,6 +21,11 @@ namespace Movie.Models
         public byte GenreId { get; set; }
 
         [Display(Name = "Number in stock")]
-        public int NumberInStock { get; set; }//
+        [Range(1,20, ErrorMessage = "The field Number in Stock must be between 1 and 20.")]
+        public int NumberInStock { get; set; }
+
+        [Required]
+        [Display(Name = "Release Date")]
+        public DateTime ReleaseDate { get; set; }
     }
 }

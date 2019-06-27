@@ -20,7 +20,7 @@ namespace Movie.Models
         [Display(Name="Genre")]
         public byte GenreId { get; set; }
 
-        [Display(Name="Number in stock")]
-        public int NumberInStock { get; set; //
+        [Display(Name = "Number in stock")]
+        public int NumberInStock { get; set; }
     }
 }

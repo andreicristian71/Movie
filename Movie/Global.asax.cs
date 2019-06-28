@@ -14,12 +14,12 @@ namespace Movie
     {
         protected void Application_Start()
         {
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             Mapper.Initialize(c => c.AddProfile<App_Start.MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

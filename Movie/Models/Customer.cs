@@ -14,7 +14,6 @@ namespace Movie.Models
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
         public bool IsSubscribedToNewsteller { get; set; }
 
         public MembershipType MembershipType { get; set; }

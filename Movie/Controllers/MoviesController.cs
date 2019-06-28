@@ -23,10 +23,14 @@ namespace Movie.Controllers
 
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(c => c.Genre).ToList();
-            return View(movies);
-        }
+            //var movies = _context.Movies.Include(c => c.Genre).ToList();
+            //return View(movies);
 
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("Index");
+            return View("ReadOnlyIndex");
+        }
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -70,6 +74,7 @@ namespace Movie.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);

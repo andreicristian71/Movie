@@ -22,6 +22,7 @@
         <tr>
             <th>Customer</th>
             <th>Membership Type</th>
+            <th>Birth Date</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -45,7 +46,10 @@
                         }
                     },
                     {
-                        data: "name"
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "birthDate"                      
                     },
                     {
                         data: "id",

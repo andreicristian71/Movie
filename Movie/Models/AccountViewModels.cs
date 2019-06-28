@@ -3,11 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Movie.Models
 {
+    //
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
+        [MaxLength(10, ErrorMessage = "Too long (max 10).")]
+        [Display(Name = "Mobile phone number")]
+        public string MobilePhoneNo { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -62,8 +71,17 @@ namespace Movie.Models
         public bool RememberMe { get; set; }
     }
 
+    //
     public class RegisterViewModel
     {
+        [MaxLength(10, ErrorMessage = "Too long (max 10).")]
+        [Display(Name = "Mobile phone number")]
+        public string MobilePhoneNo { get; set; }
+
+        [Required]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

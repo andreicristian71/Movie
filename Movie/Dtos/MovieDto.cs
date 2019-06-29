@@ -11,7 +11,6 @@ namespace Movie.Dtos
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
         public byte GenreId { get; set; }
 
         public GenreDto Genre { get; set; }

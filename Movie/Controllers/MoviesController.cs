@@ -30,7 +30,7 @@ namespace Movie.Controllers
                 return View("Index");
             return View("ReadOnlyIndex");
         }
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        //[Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();

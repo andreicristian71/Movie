@@ -25,5 +25,7 @@ namespace Movie.Models
         [Display(Name = "Number in stock")]
         [Range(1, 20, ErrorMessage = "The field Number in Stock must be between 1 and 20.")]
         public int NumberInStock { get; set; }
+
+        public int NumberAvailable { get; set; }
     }
 }

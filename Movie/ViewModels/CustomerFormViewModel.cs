@@ -20,6 +20,7 @@ namespace Movie.ViewModels
             this.IsSubscribedToNewsteller = customer.IsSubscribedToNewsteller;
             this.MembershipTypeId = customer.MembershipTypeId;
             this.BirthDate = customer.BirthDate;
+            this.MoviesRentedAtOneTime = customer.MoviesRentedAtOneTime;
         }
 
 
@@ -41,6 +42,10 @@ namespace Movie.ViewModels
         [Models.Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
 
+        [Required]
+        [Models.MaxNumberOfRentedMovies]
+        [Display(Name = "How many movies a customer can rent at one time?")]
+        public int? MoviesRentedAtOneTime { get; set; }
 
         public string Title
         {

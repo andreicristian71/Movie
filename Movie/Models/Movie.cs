@@ -27,5 +27,6 @@ namespace Movie.Models
         public int NumberInStock { get; set; }
 
         public int NumberAvailable { get; set; }
+
     }
 }

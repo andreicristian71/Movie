@@ -83,7 +83,7 @@ namespace Movie.Controllers.Api
             movieInDb.GenreId = movieDto.GenreId;
             movieInDb.ReleaseDate = movieDto.ReleaseDate;
             movieInDb.NumberInStock = movieDto.NumberInStock;
-
+            movieInDb.MoviesRentedAtOneTime = movieDto.MoviesRentedAtOneTime;
             _context.SaveChanges();
         }
 

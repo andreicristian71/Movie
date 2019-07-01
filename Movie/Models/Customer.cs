@@ -21,5 +21,9 @@ namespace Movie.Models
         [Display(Name = "Date of Birth")]
         [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
+
+        [MaxNumberOfRentedMovies]
+        [Display(Name = "How many movies a customer can rent at one time?")]
+        public int MoviesRentedAtOneTime { get; set; }
     }
 }

@@ -82,11 +82,12 @@ namespace Movie.Controllers.Api
             customerInDb.MembershipTypeId = customerDto.MembershipTypeId;
             customerInDb.IsSubscribedToNewsteller = customerDto.IsSubscribedToNewsteller;
             customerInDb.BirthDate = customerDto.BirthDate;
+            customerInDb.MoviesRentedAtOneTime = customerDto.MoviesRentedAtOneTime;
 
             _context.SaveChanges();
         }
 
-        //DELETE /api/customer/1
+        //DELETE /api/customers/1
         public void DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);

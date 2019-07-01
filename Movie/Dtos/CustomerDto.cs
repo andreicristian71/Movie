@@ -19,5 +19,7 @@ namespace Movie.Dtos
 
 //        [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
+
+        public int MoviesRentedAtOneTime { get; set; }
     }
 }

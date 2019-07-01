@@ -70,6 +70,7 @@ namespace Movie.Controllers
                 customerInDb.BirthDate = customerInDb.BirthDate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsteller = customer.IsSubscribedToNewsteller;
+                customerInDb.MoviesRentedAtOneTime = customer.MoviesRentedAtOneTime;
 
             }
             _context.SaveChanges();
